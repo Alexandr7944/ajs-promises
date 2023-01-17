@@ -11,3 +11,8 @@ test('test method GameSavingLoader.load()', async () => {
   const data = await GameSavingLoader.load();
   expect(data).toEqual(output);
 });
+
+test('test error method GameSavingLoader.load()', async () => {
+  const data = await GameSavingLoader.load(true);
+  expect(data.message).toBe('Error function read');
+});
