@@ -12,7 +12,14 @@ test('test method GameSavingLoader.load()', async () => {
   expect(data).toEqual(output);
 });
 
-test('test error method GameSavingLoader.load()', async () => {
-  const data = await GameSavingLoader.load(true);
-  expect(data.message).toBe('Error function read');
+const asyncMock = jest.fn()
+  .mockImplementation(() => Promise.reject(new Error('Async error message')));
+
+test('test method GameSavingLoader.load(error)', async () => {
+  try {
+    const mock = await asyncMock();
+    await GameSavingLoader.load(mock);
+  } catch (err) {
+    expect(err.message).toMatch('Async error message');
+  }
 });

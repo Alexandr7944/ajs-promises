@@ -1,8 +1,6 @@
-export default function read(flag) {
-  return new Promise((resolve) => {
+export default function read() {
+  return new Promise((resolve, reject) => {
     // эмуляция чтения файла
-    if (flag) throw new Error('Error function read');
-
     setTimeout(() => {
       const data = '{"id":9,"created":1546300800,"userInfo":{"id":1,"name":"Hitman","level":10,"points":2000}}';
       return ((input) => {
